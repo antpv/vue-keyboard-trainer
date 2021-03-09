@@ -2,6 +2,7 @@ const keyboardKeysMap = {
   8: 'Backspace',
   32: 'Space',
   46: 'Delete',
+  13: 'Enter',
   48: '0',
   49: '1',
   50: '2',
