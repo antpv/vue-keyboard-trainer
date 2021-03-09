@@ -1,10 +1,34 @@
 <template>
+  <!-- PRELOADER -->
   <div v-if="appPrefetching" class="hero-loader">
     <div class="hero-loader__spinner" />
   </div>
-  <div v-else>
-    App
-  </div>
+
+  <!-- APP -->
+  <template v-else>
+    <div class="navbar">
+      <div class="navbar__item">
+        <span class="navbar__item-text navbar__item-text--active">
+          game
+        </span>
+      </div>
+      <div class="navbar__item">
+        <span class="navbar__item-text">
+          keyboard_constructor
+        </span>
+      </div>
+      <div class="navbar__item">
+        <span class="navbar__item-text">
+          about
+        </span>
+      </div>
+      <div class="navbar__item">
+        <span class="navbar__item-text">
+          github
+        </span>
+      </div>
+    </div>
+  </template>
 </template>
 
 <script>
@@ -23,7 +47,7 @@ export default {
 
   methods: {
     initApp() {
-      const minPreload = 500;
+      const minPreload = 2000;
       const startTime = performance.now();
 
       window.onload = () => {
@@ -47,10 +71,21 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500&display=swap');
 
+$color-font-base: #7f5539;
+$color-font-accent: #6b705c;
+$color-spinner: #7f5539;
+
+html {
+  font-size: 16px;
+}
+
 body {
   font-family: 'Recursive', sans-serif;
   background-color: #ffe8d6;
   margin: 0;
+  color: $color-font-base;
+  line-height: 1.668;
+  height: 100vh;
 }
 
 .hero-loader {
@@ -64,9 +99,38 @@ body {
   &__spinner {
     width: 24px;
     height: 24px;
-    border: 2px solid #cb997e;
+    border: 2px solid $color-spinner;
     border-radius: 12px;
     display: inline-block;
+  }
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    display: flex;
+  }
+
+  &__item-text {
+    display: flex-inline;
+    border-bottom: 2px solid transparent;
+    border-radius: 1px;
+
+    &--active {
+      color: $color-font-accent;
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+      border-color: $color-font-accent;
+    }
   }
 }
 </style>
