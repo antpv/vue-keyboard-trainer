@@ -7,7 +7,8 @@
 
 ## Components
 - [x] KeyboardEmitter
-- [ ] KeyboardSimutalion
+- [ ] NavMenu
+- [ ] KeyboardSimulation
 
 ## Refactoring
 - [ ] KeyboardEmitter | remove hidden input
