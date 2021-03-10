@@ -1,7 +1,7 @@
 <template>
   <keyboard-emitter @down="handleKeydown" />
 
-  <div class="navbar">
+  <div class="navbar" :class="navbarClass">
     <div v-if="title" class="navbar__title">
       {{ title }}
     </div>
@@ -33,14 +33,24 @@ export default {
 
     title: String,
 
+    navbarClass: String,
+
     defaultActiveItem: {
       type: String,
-      default: 'game'
+      required: false
     }
   },
 
   emits: {
     select: String
+  },
+
+  watch: {
+    defaultActiveItem: {
+      handler(value) {
+        this.activeItem = value;
+      }
+    }
   },
 
   data() {

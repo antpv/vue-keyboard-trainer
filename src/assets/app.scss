@@ -61,11 +61,12 @@ body {
     width: 640px;
     flex: 1;
     box-sizing: border-box;
-    border: 2px dashed $color-border;
-    border-radius: .5rem;
     display: flex;
     align-items: center;
-    padding: 1rem;
+
+    &--full-width {
+      width: calc(640px + 1rem + 220px);
+    }
   }
 }
 

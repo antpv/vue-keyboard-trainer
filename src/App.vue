@@ -7,10 +7,23 @@
   <!-- APP -->
   <template v-else>
     <div class="layout">
-      <navigation-menu @select="() => {}" :items="appRoutes" title="navigation_menu" class="layout__navbar" />
+      <!-- todo: bind selected item with active route -->
+      <navigation-menu
+        v-if="isHomeRoute"
+        @select="onSelectMenuItem"
+        :items="APP_ROUTES"
+        defaultActiveItem="game"
+        title="navigation_menu"
+        navbarClass="layout__navbar"
+      />
 
-      <div class="layout__content">
-        content here
+      <div v-if="isHomeRoute" class="layout__content">
+        <span class="label">
+          Press Enter for select
+        </span>
+      </div>
+      <div v-else class="layout__content" :class="{ 'layout__content--full-width': selectedRoutePath !== null }">
+        <router-view />
       </div>
     </div>
   </template>
@@ -27,7 +40,7 @@ export default {
   data() {
     return {
       appPrefetching: true,
-      appRoutes: APP_ROUTES
+      APP_ROUTES
     };
   },
 
@@ -53,6 +66,16 @@ export default {
           this.appPrefetching = false;
         }
       };
+    },
+
+    onSelectMenuItem(path) {
+      this.$router.push(path);
+    }
+  },
+
+  computed: {
+    isHomeRoute() {
+      return this.$route.path === '/';
     }
   },
 
@@ -61,5 +84,6 @@ export default {
   }
 };
 </script>
+
 
 <style src="./assets/app.scss" lang="scss"></style>
