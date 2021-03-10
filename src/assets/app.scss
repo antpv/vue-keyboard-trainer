@@ -1,8 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500&display=swap");
 
+$color-background: #ffe8d6;
+
 $color-font-base: #7f5539;
-$color-font-accent: #6b705c;
+$color-font-link: #6b705c;
+
 $color-spinner: #7f5539;
+$color-border: #ddbea9;
+
+$border-radius-base: 3px;
+
+$navbar-width: 220px;
 
 html {
   font-size: 16px;
@@ -10,11 +18,12 @@ html {
 
 body {
   font-family: "Recursive", sans-serif;
-  background-color: #ffe8d6;
+  background-color: $color-background;
   margin: 0;
   color: $color-font-base;
   line-height: 1.668;
   height: 100vh;
+  cursor: default;
 }
 
 .hero-loader {
@@ -52,8 +61,8 @@ body {
     width: 640px;
     flex: 1;
     box-sizing: border-box;
-    border: 2px solid #ddbea9;
-    border-radius: 3px;
+    border: 2px dashed $color-border;
+    border-radius: .5rem;
     display: flex;
     align-items: center;
     padding: 1rem;
@@ -63,10 +72,18 @@ body {
 .navbar {
   display: flex;
   flex-direction: column;
+  width: $navbar-width;
 
-  &__item {
+  &__title {
+    color: #a5a58d;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  &__item,
+  &__title {
     display: flex;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
 
     &:last-child {
       margin-bottom: 0;
@@ -75,13 +92,12 @@ body {
 
   &__item-text {
     display: flex-inline;
-    border-bottom: 2px solid transparent;
-    border-radius: 1px;
-    cursor: default;
+    color: $color-font-link;
 
     &--active {
-      color: $color-font-accent;
-      border-color: $color-font-accent;
+      background-color: $color-font-link;
+      border-radius: $border-radius-base;
+      color: #fefae0;
     }
   }
 }

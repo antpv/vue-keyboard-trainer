@@ -7,30 +7,19 @@
   <!-- APP -->
   <template v-else>
     <div class="layout">
-      <div class="layout__navbar navbar">
-        <div class="navbar__item">
-          <span class="navbar__item-text" :class="{ 'navbar__item-text--active': selNavItemIdx === 0 }">
-            game
-          </span>
-        </div>
-        <div class="navbar__item">
-          <span class="navbar__item-text" :class="{ 'navbar__item-text--active': selNavItemIdx === 1 }">
-            previous_results
-          </span>
-        </div>
-      </div>
+      <navigation-menu @select="() => {}" :items="appRoutes" title="navigation_menu" class="layout__navbar" />
 
       <div class="layout__content">
         content here
       </div>
     </div>
   </template>
-
-  <keyboard-emitter @down="handleKeydown" />
 </template>
 
 <script>
-import KeyboardEmitter from './components/KeyboardEmitter.vue';
+import NavigationMenu from './components/NavigationMenu.vue';
+
+const APP_ROUTES = ['game', 'history'];
 
 export default {
   name: 'App',
@@ -38,8 +27,7 @@ export default {
   data() {
     return {
       appPrefetching: true,
-      selNavItemIdx: 0,
-      navItemsCount: 1
+      appRoutes: APP_ROUTES
     };
   },
 
@@ -49,7 +37,7 @@ export default {
 
   methods: {
     initApp() {
-      const minPreload = 2000;
+      const minPreload = 0;
       const startTime = performance.now();
 
       window.onload = () => {
@@ -65,30 +53,11 @@ export default {
           this.appPrefetching = false;
         }
       };
-    },
-
-    // todo: include constants, add arrows support
-    handleKeydown(keycode) {
-      if (keycode === 'S') {
-        if (this.selNavItemIdx < this.navItemsCount) {
-          this.selNavItemIdx += 1;
-        } else {
-          this.selNavItemIdx = 0;
-        }
-      }
-
-      if (keycode === 'W') {
-        if (this.selNavItemIdx > 0) {
-          this.selNavItemIdx -= 1;
-        } else {
-          this.selNavItemIdx = this.navItemsCount;
-        }
-      }
     }
   },
 
   components: {
-    KeyboardEmitter
+    NavigationMenu
   }
 };
 </script>
