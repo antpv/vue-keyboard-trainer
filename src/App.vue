@@ -6,31 +6,27 @@
 
   <!-- APP -->
   <template v-else>
-    <div class="navbar">
-      <div class="navbar__item">
-        <span class="navbar__item-text navbar__item-text--active">
-          game
-        </span>
+    <div class="layout">
+      <div class="layout__navbar navbar">
+        <div class="navbar__item">
+          <span class="navbar__item-text" :class="{ 'navbar__item-text--active': selNavItemIdx === 0 }">
+            game
+          </span>
+        </div>
+        <div class="navbar__item">
+          <span class="navbar__item-text" :class="{ 'navbar__item-text--active': selNavItemIdx === 1 }">
+            previous_results
+          </span>
+        </div>
       </div>
-      <div class="navbar__item">
-        <span class="navbar__item-text">
-          keyboard_constructor
-        </span>
-      </div>
-      <div class="navbar__item">
-        <span class="navbar__item-text">
-          about
-        </span>
-      </div>
-      <div class="navbar__item">
-        <span class="navbar__item-text">
-          github
-        </span>
+
+      <div class="layout__content">
+        content here
       </div>
     </div>
   </template>
 
-  <keyboard-emitter />
+  <keyboard-emitter @down="handleKeydown" />
 </template>
 
 <script>
@@ -41,7 +37,9 @@ export default {
 
   data() {
     return {
-      appPrefetching: true
+      appPrefetching: true,
+      selNavItemIdx: 0,
+      navItemsCount: 1
     };
   },
 
@@ -67,6 +65,25 @@ export default {
           this.appPrefetching = false;
         }
       };
+    },
+
+    // todo: include constants, add arrows support
+    handleKeydown(keycode) {
+      if (keycode === 'S') {
+        if (this.selNavItemIdx < this.navItemsCount) {
+          this.selNavItemIdx += 1;
+        } else {
+          this.selNavItemIdx = 0;
+        }
+      }
+
+      if (keycode === 'W') {
+        if (this.selNavItemIdx > 0) {
+          this.selNavItemIdx -= 1;
+        } else {
+          this.selNavItemIdx = this.navItemsCount;
+        }
+      }
     }
   },
 
@@ -120,12 +137,36 @@ body {
   height: 100vh;
 }
 
+.layout {
+  display: flex;
+
+  &__navbar {
+    margin-right: 1rem;
+  }
+
+  &__content {
+    width: 640px;
+    flex: 1;
+    box-sizing: border-box;
+    border: 2px solid #ddbea9;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+  }
+}
+
 .navbar {
   display: flex;
   flex-direction: column;
 
   &__item {
     display: flex;
+    margin-bottom: 0.25rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__item-text {
@@ -136,8 +177,6 @@ body {
 
     &--active {
       color: $color-font-accent;
-      font-size: 1.25rem;
-      margin-bottom: 0.25rem;
       border-color: $color-font-accent;
     }
   }
