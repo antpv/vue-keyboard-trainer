@@ -29,15 +29,19 @@
       </div>
     </div>
   </template>
+
+  <keyboard-emitter />
 </template>
 
 <script>
+import KeyboardEmitter from './components/KeyboardEmitter.vue';
+
 export default {
   name: 'App',
 
   data() {
     return {
-      appPrefetching: true,
+      appPrefetching: true
     };
   },
 
@@ -63,13 +67,17 @@ export default {
           this.appPrefetching = false;
         }
       };
-    },
+    }
   },
+
+  components: {
+    KeyboardEmitter
+  }
 };
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500&display=swap");
 
 $color-font-base: #7f5539;
 $color-font-accent: #6b705c;
@@ -80,7 +88,7 @@ html {
 }
 
 body {
-  font-family: 'Recursive', sans-serif;
+  font-family: "Recursive", sans-serif;
   background-color: #ffe8d6;
   margin: 0;
   color: $color-font-base;
@@ -124,6 +132,7 @@ body {
     display: flex-inline;
     border-bottom: 2px solid transparent;
     border-radius: 1px;
+    cursor: default;
 
     &--active {
       color: $color-font-accent;

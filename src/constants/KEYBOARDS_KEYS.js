@@ -1,4 +1,4 @@
-const keyboardKeysMap = {
+export default {
   8: 'Backspace',
   32: 'Space',
   46: 'Delete',
@@ -38,9 +38,5 @@ const keyboardKeysMap = {
   87: 'W',
   88: 'X',
   89: 'Y',
-  90: 'Z',
-};
-
-export default {
-  keyboardKeysMap,
+  90: 'Z'
 };
