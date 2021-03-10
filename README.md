@@ -6,3 +6,6 @@
 ## Components
 - [x] KeyboardEmitter
 - [ ] KeyboardSimutalion
+
+## Refactoring
+- [ ] KeyboardEmitter | remove hidden input
