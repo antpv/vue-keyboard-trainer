@@ -1,8 +1,7 @@
 # vue-keyboard-trainer
 
-## Functional
+## Features
 - [ ] Keyboard layaut
-- [ ] Dark theme
 - [ ] Keyboard builder
 
 ## Components
