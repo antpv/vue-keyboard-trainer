@@ -65,8 +65,24 @@ body {
     align-items: center;
 
     &--full-width {
+      display: block;
       width: calc(640px + 1rem + 220px);
     }
+  }
+}
+
+.label {
+  color: #a5a58d;
+  font-style: italic;
+  font-weight: 300;
+
+  &__key {
+    border: 1px solid $color-font-link;
+    color: $color-font-link;
+    padding: 0 0.25rem;
+    border-radius: 3px;
+    font-weight: 500;
+    font-style: normal;
   }
 }
 
@@ -101,4 +117,10 @@ body {
       color: #fefae0;
     }
   }
+}
+
+.exit-prompt {
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid $color-border;
 }

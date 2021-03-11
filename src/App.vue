@@ -22,7 +22,9 @@
           Press Enter for select
         </span>
       </div>
+
       <div v-else class="layout__content" :class="{ 'layout__content--full-width': selectedRoutePath !== null }">
+        <exit-prompt />
         <router-view />
       </div>
     </div>
@@ -31,6 +33,7 @@
 
 <script>
 import NavigationMenu from './components/NavigationMenu.vue';
+import ExitPrompt from './components/ExitPrompt.vue';
 
 const APP_ROUTES = ['game', 'history'];
 
@@ -39,7 +42,7 @@ export default {
 
   data() {
     return {
-      appPrefetching: true,
+      appPrefetching: false,
       APP_ROUTES
     };
   },
@@ -80,7 +83,8 @@ export default {
   },
 
   components: {
-    NavigationMenu
+    NavigationMenu,
+    ExitPrompt
   }
 };
 </script>
