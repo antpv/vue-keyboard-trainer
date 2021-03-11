@@ -63,7 +63,7 @@ export default {
     handleKeydown(key) {
       const isDownKey = key === 'ArrowDown' || key === 'S';
       const isUpKey = key === 'ArrowUp' || key === 'W';
-      const isEnter = key === 'Enter';
+      const isSelect = key === 'Enter' || key === 'Space';
 
       if (isDownKey) {
         this.selectNextItem();
@@ -73,7 +73,7 @@ export default {
         this.selectPrevItem();
       }
 
-      if (isEnter) {
+      if (isSelect) {
         this.$emit('select', this.activeItem);
       }
     },

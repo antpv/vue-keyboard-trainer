@@ -12,14 +12,14 @@
         v-if="isHomeRoute"
         @select="onSelectMenuItem"
         :items="APP_ROUTES"
-        defaultActiveItem="game"
-        title="navigation_menu"
+        :defaultActiveItem="selectedNavigationMenu"
+        title="Navigation"
         navbarClass="layout__navbar"
       />
 
       <div v-if="isHomeRoute" class="layout__content">
         <span class="label">
-          Press Enter for select
+          Use <span class="label__key">Enter</span> or <span class="label__key">Space</span> to select
         </span>
       </div>
 
@@ -29,10 +29,13 @@
       </div>
     </div>
   </template>
+
+  <keyboard-emitter @down="handleKeydown" />
 </template>
 
 <script>
 import NavigationMenu from './components/NavigationMenu.vue';
+import KeyboardEmitter from './components/KeyboardEmitter.vue';
 import ExitPrompt from './components/ExitPrompt.vue';
 
 const APP_ROUTES = ['game', 'history'];
@@ -42,7 +45,8 @@ export default {
 
   data() {
     return {
-      appPrefetching: false,
+      appPrefetching: true,
+      selectedNavigationMenu: 'game',
       APP_ROUTES
     };
   },
@@ -72,7 +76,15 @@ export default {
     },
 
     onSelectMenuItem(path) {
+      this.selectedNavigationMenu = path;
+
       this.$router.push(path);
+    },
+
+    handleKeydown(key) {
+      if (key === 'Esc') {
+        this.$router.push('/');
+      }
     }
   },
 
@@ -84,7 +96,8 @@ export default {
 
   components: {
     NavigationMenu,
-    ExitPrompt
+    ExitPrompt,
+    KeyboardEmitter
   }
 };
 </script>

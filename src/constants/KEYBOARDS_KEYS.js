@@ -3,6 +3,7 @@ export default {
   32: 'Space',
   46: 'Delete',
   13: 'Enter',
+  27: 'Esc',
   37: 'ArrowLeft',
   38: 'ArrowUp',
   39: 'ArrowRight',
