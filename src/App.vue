@@ -23,7 +23,7 @@
         </span>
       </div>
 
-      <div v-else class="layout__content" :class="{ 'layout__content--full-width': selectedRoutePath !== null }">
+      <div v-else class="layout__content" :class="{ 'layout__content--full-width': !isHomeRoute }">
         <exit-prompt />
         <router-view />
       </div>
