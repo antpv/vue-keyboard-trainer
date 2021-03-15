@@ -124,3 +124,34 @@ body {
   margin-bottom: 2rem;
   border-bottom: 1px solid $color-border;
 }
+
+.game-input {
+  all: unset;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-base;
+  padding: .25rem .5rem;
+  width: 100%;
+  margin-top: 1rem;
+
+  &-error {
+    color: #fff;
+    background: #d90429;
+    border-color: #d90429;
+  }
+}
+
+.game-content-word {
+  display: inline-block;
+  padding-right: 0.125rem;
+  padding-left: 0.125rem;
+
+  &--active {
+    background-color: #2a9d8f;
+    color: #fff;
+    border-radius: $border-radius-base;
+  }
+
+  &--written {
+    color: #ddbea9;
+  }
+}
